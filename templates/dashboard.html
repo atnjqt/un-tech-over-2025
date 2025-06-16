@@ -44,7 +44,7 @@
         </div>
         
         <div class="filter-controls">
-            <form action="/dashboard" method="GET">
+            <div id="filterForm">
                 <div>
                     <label for="country">Select Country:</label>
                     <select name="country" id="country">
@@ -73,9 +73,12 @@
                 </fieldset>
                 
                 <div style="margin-top: 15px;">
-                    <button type="submit">Apply Filters</button>
+                    <button type="button" id="loadDataBtn" class="load-btn">Load Map Data</button>
+                    <div id="loadingIndicator" style="display: none;">
+                        <span class="spinner"></span> Loading map data...
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
         
         <div class="map-container">
