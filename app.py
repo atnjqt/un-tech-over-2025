@@ -28,7 +28,23 @@ def index():
 # a dashboard route for OSM data - this loads the initial page without data
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-    country_codes = ['RWA', 'SYR', 'SGP', 'UGA', 'BRB', 'BLZ', 'HT', 'PS', 'USA', 'KEN', 'GBR']
+    # List of country codes with names
+    country_data = [
+        {'code': 'RWA', 'name': 'Rwanda 🇷🇼'},
+        {'code': 'SYR', 'name': 'Syria 🇸🇾'},
+        {'code': 'SGP', 'name': 'Singapore 🇸🇬'},
+        {'code': 'UGA', 'name': 'Uganda 🇺🇬'},
+        {'code': 'BRB', 'name': 'Barbados 🇧🇧'},
+        {'code': 'BLZ', 'name': 'Belize 🇧🇿'},
+        {'code': 'HT', 'name': 'Haiti 🇭🇹'},
+        {'code': 'PS', 'name': 'Palestine 🇵🇸'},
+        {'code': 'USA', 'name': 'United States 🇺🇸'},
+        {'code': 'KEN', 'name': 'Kenya 🇰🇪'},
+        {'code': 'GBR', 'name': 'United Kingdom 🇬🇧'},
+    ]
+    
+    # Keep a list of just the codes for backend processing
+    country_codes = [country['code'] for country in country_data]
     
     # All available location types
     all_location_types = {
@@ -63,6 +79,7 @@ def dashboard():
     
     return render_template('dashboard.html', 
                           map_html=None,
+                          country_data=country_data,
                           country_codes=country_codes, 
                           all_location_types=all_location_types,
                           selected_types=selected_types,

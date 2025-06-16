@@ -159,3 +159,39 @@ legend {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+/* Selection info panel */
+.selection-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border-left: 4px solid #4CAF50;
+    border-radius: 4px;
+}
+
+.selection-info h3 {
+    margin-top: 0;
+    color: #2e7d32;
+    font-size: 18px;
+}
+
+.selection-info p {
+    margin: 5px 0;
+}
+
+.selection-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* This is a fix for the selected country name span */
+#selectedCountryName {
+    font-weight: 600;
+}
+
+#selectedCountryCode {
+    font-family: monospace;
+    background: #f0f0f0;
+    padding: 1px 3px;
+    border-radius: 2px;
+}

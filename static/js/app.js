@@ -61,6 +61,9 @@ function loadMapData() {
     const countrySelect = document.getElementById('country');
     const country = countrySelect ? countrySelect.value : 'RWA';
     
+    // Get country name from the select option text
+    const countryName = countrySelect ? countrySelect.options[countrySelect.selectedIndex].text : 'Rwanda';
+    
     // Get selected location types
     const locationCheckboxes = document.getElementsByClassName('location-checkbox');
     const selectedTypes = [];
@@ -97,6 +100,9 @@ function loadMapData() {
             if (mapContainer) {
                 mapContainer.innerHTML = data.map_html;
             }
+            
+            // Update selection info display
+            updateSelectionInfo(countryName, country, selectedTypes);
         } else {
             console.error('Error loading map data:', data.message);
             alert('Error loading map data: ' + data.message);
@@ -112,4 +118,29 @@ function loadMapData() {
             loadingIndicator.style.display = 'none';
         }
     });
+}
+
+/**
+ * Update the selection info display with current filter values
+ */
+function updateSelectionInfo(countryName, countryCode, locationTypes) {
+    const infoPanel = document.getElementById('currentSelectionInfo');
+    const countryNameElement = document.getElementById('selectedCountryName');
+    const countryCodeElement = document.getElementById('selectedCountryCode');
+    const locationTypesElement = document.getElementById('selectedLocationTypes');
+    
+    if (infoPanel && countryNameElement && countryCodeElement && locationTypesElement) {
+        // Format location types as a comma-separated list with title case
+        const formattedTypes = locationTypes.map(type => {
+            return type.charAt(0).toUpperCase() + type.slice(1);
+        }).join(', ');
+        
+        // Update display elements
+        countryNameElement.textContent = countryName;
+        countryCodeElement.textContent = countryCode;
+        locationTypesElement.textContent = formattedTypes || 'None';
+        
+        // Show the info panel
+        infoPanel.style.display = 'block';
+    }
 }

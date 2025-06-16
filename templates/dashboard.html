@@ -48,8 +48,8 @@
                 <div>
                     <label for="country">Select Country:</label>
                     <select name="country" id="country">
-                        {% for code in country_codes %}
-                            <option value="{{ code }}" {% if code == request.args.get('country', 'RWA') %}selected{% endif %}>{{ code }}</option>
+                        {% for country in country_data %}
+                            <option value="{{ country.code }}" {% if country.code == request.args.get('country', 'RWA') %}selected{% endif %}>{{ country.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -78,6 +78,12 @@
                         <span class="spinner"></span> Loading map data...
                     </div>
                 </div>
+            </div>
+            
+            <div id="currentSelectionInfo" class="selection-info" style="display:none;">
+                <h3>Current Map Data</h3>
+                <p><strong>Country:</strong> <span id="selectedCountryName"></span> (<span id="selectedCountryCode"></span>)</p>
+                <p><strong>Location Types:</strong> <span id="selectedLocationTypes"></span></p>
             </div>
         </div>
         
