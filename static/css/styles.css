@@ -84,7 +84,7 @@ legend {
     margin: 0 5px; 
     cursor: pointer; 
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 10px;
 }
 .select-btn:hover { 
     background-color: #e0e0e0; 
@@ -114,6 +114,7 @@ legend {
 .member h3 {
     margin-top: 0;
     color: #2b79ff;
+    font-size:18px;
 }
 .member p {
     margin-bottom: 0;
@@ -171,8 +172,8 @@ legend {
 
 .selection-info h3 {
     margin-top: 0;
-    color: #2e7d32;
-    font-size: 18px;
+    color: #1b8dff;
+    font-size: 12px;
 }
 
 .selection-info p {
@@ -186,7 +187,7 @@ legend {
 
 /* This is a fix for the selected country name span */
 #selectedCountryName {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 #selectedCountryCode {
