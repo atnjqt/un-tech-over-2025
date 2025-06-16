@@ -34,7 +34,7 @@
                 </div>
                 <div class="member">
                     <h3>5. Adem</h3>
-                    <p>AI Engineerin</p>
+                    <p>AI Engineer</p>
                 </div>
                 <div class="member">
                     <h3>6. Shawn</h3>
@@ -87,24 +87,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const selectAllBtn = document.getElementById('selectAll');
-            const deselectAllBtn = document.getElementById('deselectAll');
-            const checkboxes = document.getElementsByClassName('location-checkbox');
-            
-            selectAllBtn.addEventListener('click', function() {
-                for (let checkbox of checkboxes) {
-                    checkbox.checked = true;
-                }
-            });
-            
-            deselectAllBtn.addEventListener('click', function() {
-                for (let checkbox of checkboxes) {
-                    checkbox.checked = false;
-                }
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
