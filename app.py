@@ -1,12 +1,13 @@
 # I want a simple Flask app to serve a dashboard for displaying geopandas visualizations
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, url_for
 
 # the main route 
 
 from gigaspatial.config import config
 from gigaspatial.handlers import OSMLocationFetcher
 import geopandas as gpd
+import os
 
 ### Not needed with pip install - path to giga-spatial if you cloned it and are going to extend it
 # sys.path.append("path_to_giga_spatial/")
@@ -14,7 +15,10 @@ import geopandas as gpd
 from dotenv import load_dotenv
 load_dotenv()
 
-app = Flask(__name__)
+# Setup Flask app with static folder
+app = Flask(__name__, 
+           static_folder='static',
+           static_url_path='/static')
 app.config.from_object(config)
 @app.route('/')
 def index():
