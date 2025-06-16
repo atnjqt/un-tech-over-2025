@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GeoSpatial Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        h1 { text-align: center; }
+        .map-container { width: 100%; height: 70vh; }
+        .filter-controls { margin-bottom: 20px; text-align: center; background-color: #f9f9f9; padding: 15px; border-radius: 8px; }
+        select { padding: 8px 15px; font-size: 16px; border-radius: 4px; }
+        button { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        button:hover { background-color: #45a049; }
+        .location-types { display: flex; justify-content: center; margin-top: 15px; gap: 20px; flex-wrap: wrap; }
+        .location-type { margin-right: 5px; display: inline-block; }
+        .location-type input { margin-right: 5px; }
+        fieldset { border: 1px solid #ddd; border-radius: 4px; padding: 10px; margin-top: 10px; }
+        legend { padding: 0 10px; font-weight: bold; }
+        .select-buttons { margin-bottom: 10px; text-align: center; }
+        .select-btn { 
+            background-color: #f0f0f0; 
+            color: #333; 
+            border: 1px solid #ccc; 
+            padding: 5px 10px; 
+            margin: 0 5px; 
+            cursor: pointer; 
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .select-btn:hover { background-color: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>UN-Tech-Over Hackathon - OSPOs for Good 2025</h1>
+        <div class="team-info">
+        <h2>Description:</h2>
+        <p>This dashboard provides a visual representation of geospatial data across various countries referenced in the OSM model. You can filter the data by country and location types to customize your view.</p>
+        <h2>Goal:</h2>
+        <p>Building out the `giga-spatial` platform to improve integration for HDX handler / UNHCR handler to include displaced and refugee populations. To get *Ahead of the Storm*, the team aims to demontrate value for UN members and policy makers in identifying risk for children that are displaced or residential. </p>
+            <h2>Our Team:</h2>
+            <div class="team-members">
+                <div class="member">
+                    <h3>1. Inês Lucas</h3>
+                    <p>Creative Technologist @ NYU</p>
+                </div>
+                <div class="member">
+                    <h3>2. Etienne Jacquot</h3>
+                    <p>Systems Administrator @ University of Pennsylvania</p>
+                </div>
+                <div class="member">
+                    <h3>3. Vaisnavi Nemala</h3>
+                    <p>Data Scientist @ Carnegie Mellon University </p>
+                </div>
+                <div class="member">
+                    <h3>4. Michelle Marchesini</h3>
+                    <p>Research Coordinator @ Earlham College </p>
+                </div>
+                <div class="member">
+                    <h3>5. Adem</h3>
+                    <p>AI Engineerin</p>
+                </div>
+                <div class="member">
+                    <h3>6. Shawn</h3>
+                    <p>Legal Technician</p>
+                </div>
+            </div>
+        </div>
+        <style>
+            .team-info {
+                background-color: #f5f5f5;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .team-members {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                gap: 15px;
+            }
+            .member {
+                background-color: white;
+                border-radius: 6px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                width: calc(33% - 20px);
+                min-width: 200px;
+            }
+            .member h3 {
+                margin-top: 0;
+                color: #4CAF50;
+            }
+            .member p {
+                margin-bottom: 0;
+                color: #666;
+            }
+        </style>
+        
+        <div class="filter-controls">
+            <form action="/dashboard" method="GET">
+                <div>
+                    <label for="country">Select Country:</label>
+                    <select name="country" id="country">
+                        {% for code in country_codes %}
+                            <option value="{{ code }}" {% if code == request.args.get('country', 'RWA') %}selected{% endif %}>{{ code }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <fieldset>
+                    <legend>Location Types</legend>
+                    <div class="select-buttons">
+                        <button type="button" class="select-btn" id="selectAll">Select All</button>
+                        <button type="button" class="select-btn" id="deselectAll">Deselect All</button>
+                    </div>
+                    <div class="location-types">
+                        {% for loc_type in all_location_types %}
+                            <div class="location-type">
+                                <input type="checkbox" id="type_{{ loc_type }}" name="location_types" 
+                                       value="{{ loc_type }}" class="location-checkbox"
+                                       {% if loc_type in selected_types %}checked{% endif %}>
+                                <label for="type_{{ loc_type }}">{{ loc_type|title }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </fieldset>
+                
+                <div style="margin-top: 15px;">
+                    <button type="submit">Apply Filters</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="map-container">
+            {% if map_html %}
+                {{ map_html|safe }}
+            {% else %}
+                <p>No map to display.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectAllBtn = document.getElementById('selectAll');
+            const deselectAllBtn = document.getElementById('deselectAll');
+            const checkboxes = document.getElementsByClassName('location-checkbox');
+            
+            selectAllBtn.addEventListener('click', function() {
+                for (let checkbox of checkboxes) {
+                    checkbox.checked = true;
+                }
+            });
+            
+            deselectAllBtn.addEventListener('click', function() {
+                for (let checkbox of checkboxes) {
+                    checkbox.checked = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
