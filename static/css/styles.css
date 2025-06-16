@@ -42,7 +42,7 @@ button {
     margin-left: 10px; 
 }
 button:hover { 
-    background-color: #45a049; 
+    background-color: #2776ff; 
 }
 
 /* Location types */
@@ -165,7 +165,7 @@ legend {
     margin-top: 20px;
     padding: 15px;
     background-color: #e8f5e9;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid #0066ff;
     border-radius: 4px;
 }
 
