@@ -1,8 +1,10 @@
 # UN Tech-Over 2025 Hackathon
 
-Sample Dashboard for the [UN Tech-Over 2025 Hackathon](https://www.un.org/digital-emerging-technologies/content/open-source-week-2025).
+## Getting Started
 
-Explores applications of `giga-spatial` for OSM handler paired with HDX handler / UNCHR data
+Sample Dashboard for the [UN Tech-Over 2025 Hackathon](https://www.un.org/digital-emerging-technologies/content/open-source-week-2025)
+
+Explores applications of [`giga-spatial`](https://github.com/) for OSM handler paired with HDX handler / UNCHR data
 
 ## Setup
 
@@ -32,6 +34,7 @@ python application.py
 
 - A sample [Dockerfile](./Dockerfile) is provided for development purposes, as the project is currently not production-ready beyond MacOS Python 3.10.
 
+> 🚨 Linux distributions are unable to build the python3.10 requirements.txt provided by the original `giga-spatial` team, as there are discrepanies for `rasterio` & `numpy=2.0.0rc1`. A goal for the project moving forward is to push the project to python 3.11+ to facilitate linux installation
 
 ## Disclaimer on AI Tools
 
