@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Giga Spatial</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">🇺🇳 ⛈️ 👩‍💻 UN TECH OVER Hackathon: Ahead of the Storm 2025</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://untechover-f93e64.opensource.unicc.org/#challenge2" target="_blank">Challenge Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/atnjqt/un-tech-over-2025" target="_blank">Github</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>    <div class="container my-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Meet the Team</h1>
+            <p class="lead">Our talented team working on the UN Tech Over Hackathon 2025</p>
+
+            <hr class="my-4">
+            
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Team Member 1 -->
+                <div class="col">
+                    <div class="card team-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0">
+                                    <img src="https://media.licdn.com/dms/image/D4D03AQGxXz9_kZ7Oaw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1690794899927?e=1755734400&v=beta&t=ku8Pr38J6eQJWODcibYUKmvb--MavHO_Ci7PvVA4dO0" class="rounded-circle border" alt="Inês Lucas">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="card-title mb-0">Inês Lucas</h5>
+                                    <p class="card-text text-muted">Creative Technologist @ <a href="https://nyu.edu" target="_blank" class="text-decoration-none">NYU</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-2 text-end">
+                                <a href="https://www.linkedin.com/in/ineslucasdesign/" target="_blank" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/ineslucas" target="_blank" class="btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="GitHub Profile"><i class="bi bi-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="col">
+                    <div class="card team-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQGPp-PTp0nUCg/profile-displayphoto-shrink_400_400/B4EZbQhH2PHcAg-/0/1747255066350?e=1755734400&v=beta&t=dP7OEg0lhjTm_dZwYOt1AHxBfYBJm0PyuJfTcwdh8so" class="rounded-circle border" alt="Etienne Jacquot">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="card-title mb-0">Etienne Jacquot</h5>
+                                    <p class="card-text text-muted">DevOps Engineer @ <a href="https://upenn.edu" target="_blank" class="text-decoration-none">University of Pennsylvania</a></p>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-end">
+                                <a href="https://www.linkedin.com/in/etienne-jacquot-2808a5365/" target="_blank" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/atnjqt" target="_blank" class="btn btn-sm btn-outline-dark"><i class="bi bi-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+            <!-- Team Member 3 -->
+            <div class="col">
+                <div class="card team-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <img src="https://media.licdn.com/dms/image/v2/D4E03AQHnjfZAKhtqrA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727205069482?e=1755734400&v=beta&t=XsGtiD8PNK9GEwTuo-2j2mmUkejiLHTXQ6gBnLwxzJQ" class="rounded-circle border" alt="Vaisnavi Nemala">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-0">Vaisnavi Nemala</h5>
+                                <p class="card-text text-muted">Data Scientist @ <a href="https://cmu.edu" target="_blank" class="text-decoration-none">Carnegie Mellon University</a></p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end">
+                            <a href="https://www.linkedin.com/in/vaisnavi-nemala/" target="_blank" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="btn btn-sm btn-outline-dark"><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Member 4 -->
+            <div class="col">
+                <div class="card team-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <img src="https://media.licdn.com/dms/image/v2/C4E03AQH9TkHkexg5pQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1663289415208?e=1755734400&v=beta&t=oWwMtrxNmzg4NEO8NSmBDCYKSwNlQlVe85fOAV8NvRw" target="_blank" class="rounded-circle border" alt="Michelle Marchesini">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-0">Michelle Marchesini</h5>
+                                <p class="card-text text-muted">Research Coordinator @ <a href="https://earlham.edu" target="_blank" class="text-decoration-none">Earlham College</a></p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end">
+                            <a href="https://www.linkedin.com/in/mmarchesiniv/" target="_blank" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://marchmich.github.io/" target="_blank" class="btn btn-sm btn-outline-dark"><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Member 5 -->
+            <div class="col">
+                <div class="card team-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <img src="https://media.licdn.com/dms/image/D4D35AQFJ-k8_9tsM-Q/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1701223664495?e=1750629600&v=beta&t=prl69bGWW2vlKEmZ7UPJB-4cXcuJ7InfKOtjtp7zsLM" class="rounded-circle border" alt="Adem Arik">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-0">Adem Arik</h5>
+                                <p class="card-text text-muted">AI Engineer @ <a href="https://brooklynai.com" target="_blank" class="text-decoration-none">Brooklyn AI</a></p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end">
+                            <a href="https://www.linkedin.com/in/ademarik/" target="_blank" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://github.com/ademarik" target="_blank" class="btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="GitHub Profile"><i class="bi bi-github"></i></a>
+                            <a href="https://ademarik.com/" target="_blank" class="btn btn-sm btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Personal Website"><i class="bi bi-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Member 6 -->
+            <div class="col">
+                <div class="card team-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <img src="https://media.licdn.com/dms/image/D5603AQE5WgKiN9BQ6g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1704771751398?e=1755734400&v=beta&t=9XO42HtMEB1W3nntkPTRZjWv_TjlZDeopXfKVg6gOEw" class="rounded-circle border" alt="Sean Nguyen">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-0">Sean Nguyen</h5>
+                                <p class="card-text text-muted">Legal Technologist @ <a href="https://georgetown.edu" target="_blank" class="text-decoration-none">Georgetown Law</a></p>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end">
+                            <a href="https://www.linkedin.com/in/sean-nguyen-064264278/" target="_blank" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="tooltip" data-bs-placement="top" title="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://github.com/seannguyen" target="_blank" class="btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="GitHub Profile"><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">1. OSM app</h5>
+                        <p class="card-text">Interactive dashboard visualizations using <a href="https://www.openstreetmap.org" target="_blank">OSM</a> data</p>
+                        <a href="/dashboard" class="btn btn-outline-primary">See here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">2. HDX app</h5>
+                        <p class="card-text">Extending the <code>Giga-Spatial</code> handlers for <a href="https://data.humdata.org/" target="_blank">HDX</a> data</p>
+                        <a href="/dashboard" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">3. UNHCR data</h5>
+                        <p class="card-text">Refugee Data Finder online source to include</p>
+                        <a href="https://www.unhcr.org/refugee-statistics" target="_blank" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 <a href="https://github.com/unicef/giga-spatial" target="_blank">Giga Spatial</a> - All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html></div>

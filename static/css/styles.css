@@ -1,13 +1,10 @@
 /* Main layout */
 body { 
-    font-family: Arial, sans-serif; 
     margin: 0; 
     padding: 0; 
 }
 .container { 
-    max-width: 1200px; 
     margin: 0 auto; 
-    padding: 2rem; 
 }
 h1 { 
     text-align: center; 
@@ -34,7 +31,7 @@ select {
 }
 button { 
     padding: 8px 15px; 
-    background-color: #4CAF50; 
+    background-color: #1a85dc; 
     color: white; 
     border: none; 
     border-radius: 4px; 
@@ -71,9 +68,45 @@ legend {
     font-weight: bold; 
 }
 
+/* Location types - compact fieldset */
+.location-types-fieldset {
+    max-width: 350px;
+    margin: 0 auto 10px auto;
+    padding: 6px 10px 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    background: #f7f7fa;
+    font-size: 13px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.location-types-fieldset legend {
+    font-size: 14px;
+    padding: 0 8px;
+    margin-bottom: 0;
+}
+.location-types {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+.location-type {
+    margin-right: 0;
+    margin-bottom: 2px;
+    font-size: 13px;
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+}
+.location-type input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
 /* Select/Deselect buttons */
 .select-buttons { 
-    margin-bottom: 10px; 
+    margin-top: 10px; 
     text-align: center; 
 }
 .select-btn { 
@@ -84,7 +117,7 @@ legend {
     margin: 0 5px; 
     cursor: pointer; 
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 14px;
 }
 .select-btn:hover { 
     background-color: #e0e0e0; 
@@ -195,4 +228,149 @@ legend {
     background: #f0f0f0;
     padding: 1px 3px;
     border-radius: 2px;
+}
+
+/* Team Tiles */
+.team-section {
+    margin-top: 20px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.team-tile {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-tile:hover .team-img {
+    transform: scale(1.1);
+}
+
+.team-info h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.team-info p {
+    color: #666;
+    margin: 5px 0 10px;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 5px;
+    color: #1e8bff;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #2776FF;
+    transform: scale(1.2);
+}
+
+/* Media Queries for Team Grid */
+@media (max-width: 992px) {
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Jumbotron */
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+
+/* Team Card Styles */
+.team-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.team-card .rounded-circle {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 3px solid #f8f9fa !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .rounded-circle {
+    transform: scale(1.05);
+    border-color: #4CAF50 !important;
+}
+
+/* Social Media Icon Animation */
+.team-card .btn-sm {
+    transition: all 0.3s ease;
+}
+
+.team-card .btn-sm:hover {
+    transform: scale(1.2);
 }

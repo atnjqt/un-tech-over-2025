@@ -3,11 +3,20 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+    
     // Handle select/deselect all buttons for location types
     initializeFilterButtons();
     
     // Initialize load data button
     initializeLoadDataButton();
+    
+    // Add click handlers for social media links tracking (if analytics available)
+    initializeSocialTracking();
 });
 
 /**
@@ -142,5 +151,38 @@ function updateSelectionInfo(countryName, countryCode, locationTypes) {
         
         // Show the info panel
         infoPanel.style.display = 'block';
+    }
+}
+
+/**
+ * Initialize social media link click tracking
+ * This can be used to track clicks on social media links if analytics are added later
+ */
+function initializeSocialTracking() {
+    // Find all social media links
+    const socialLinks = document.querySelectorAll('.team-card .btn-sm');
+    
+    if (socialLinks) {
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Get platform and user info from link
+                const platform = this.querySelector('i').className.includes('linkedin') ? 'LinkedIn' : 
+                                 this.querySelector('i').className.includes('github') ? 'GitHub' : 
+                                 this.querySelector('i').className.includes('globe') ? 'Website' : 'Other';
+                
+                const memberName = this.closest('.card-body').querySelector('.card-title').textContent;
+                
+                // For future analytics integration
+                console.log(`Social click: ${memberName} - ${platform}`);
+                
+                // If analytics exists, track event
+                if (typeof gtag === 'function') {
+                    gtag('event', 'social_click', {
+                        'event_category': 'Social',
+                        'event_label': `${memberName} - ${platform}`
+                    });
+                }
+            });
+        });
     }
 }

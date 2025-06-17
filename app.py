@@ -24,6 +24,13 @@ app.config.from_object(config)
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
 
 # a dashboard route for OSM data - this loads the initial page without data
 @app.route('/dashboard', methods=['GET'])
@@ -32,27 +39,35 @@ def dashboard():
     country_data = [
         {'code': 'RWA', 'name': 'Rwanda 🇷🇼'},
         {'code': 'SYR', 'name': 'Syria 🇸🇾'},
-        {'code': 'SGP', 'name': 'Singapore 🇸🇬'},
         {'code': 'UGA', 'name': 'Uganda 🇺🇬'},
         {'code': 'BRB', 'name': 'Barbados 🇧🇧'},
         {'code': 'BLZ', 'name': 'Belize 🇧🇿'},
-        {'code': 'HT', 'name': 'Haiti 🇭🇹'},
-        {'code': 'PS', 'name': 'Palestine 🇵🇸'},
+        {'code': 'HT', 'name':  'Haiti 🇭🇹'},
+        {'code': 'VEN', 'name': 'Venezuela 🇻🇪'},
+        {'code': 'COL', 'name': 'Colombia 🇨🇴'},
         {'code': 'USA', 'name': 'United States 🇺🇸'},
-        {'code': 'KEN', 'name': 'Kenya 🇰🇪'},
         {'code': 'GBR', 'name': 'United Kingdom 🇬🇧'},
+        {'code': 'DEU', 'name': 'Germany 🇩🇪'},
+        {'code': 'UKR', 'name': 'Ukraine 🇺🇦'},
+        {'code': 'PS', 'name': 'Palestine 🇵🇸'},
+        {'code': 'IRN', 'name': 'Iran 🇮🇷'},
+        {'code': 'TUR', 'name': 'Turkiye 🇹🇷'},
+        {'code': 'SSD', 'name': 'South Sudan 🇸🇸'},
+        {'code': 'KEN', 'name': 'Kenya 🇰🇪'},
+        {'code': 'AFG', 'name': 'Afghanistan 🇦🇫'}
     ]
     
     # Keep a list of just the codes for backend processing
     country_codes = [country['code'] for country in country_data]
     
     # All available location types
+    # https://wiki.openstreetmap.org/wiki/Map_features
     all_location_types = {
-        "amenity": ["school", "hospital", "restaurant", "bank", "cafe", "pharmacy", "post_office"],
+        "amenity": ["school", "hospital", "restaurant", "bank", "cafe", "pharmacy", "post_office", "social_facility"],
         "building": ["residential", "commercial", "industrial", "retail", "office"],
         "waterway": ["river", "canal", "stream", "lake"],
         "emergency": ["fire_station", "police", "ambulance"],
-        "natural": ["forest", "park", "beach", "wetland"],
+        "natural": ["forest", "park", "beach", "wetland", "coastline"],
         "transportation": ["bus_stop", "train_station", "airport", "ferry_terminal"],
         "tourism": ["hotel", "museum", "attraction", "viewpoint"],
         "historic": ["monument", "ruins", "castle", "memorial"],
