@@ -5,6 +5,7 @@ body {
 }
 .container { 
     margin: 0 auto; 
+    margin-top: 10px;
 }
 h1 { 
     text-align: center; 
@@ -13,16 +14,35 @@ h1 {
 /* Map container */
 .map-container { 
     width: 100%; 
-    height: 70vh; 
 }
 
 /* Filter controls */
 .filter-controls { 
-    margin-bottom: 20px; 
-    text-align: center; 
-    background-color: #f9f9f9; 
-    padding: 15px; 
-    border-radius: 8px; 
+    margin: 25px auto 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 18px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #eaeaea;
+}
+
+.filter-controls > * {
+    margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+    .filter-controls {
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 select { 
     padding: 8px 15px; 
@@ -64,8 +84,9 @@ fieldset {
     margin-top: 10px; 
 }
 legend { 
-    padding: 0 10px; 
+    padding: 0 10px 3px; 
     font-weight: bold; 
+    font-size: medium;
 }
 
 /* Location types - compact fieldset */

@@ -38,10 +38,8 @@ def dashboard():
     # List of country codes with names
     country_data = [
         {'code': 'RWA', 'name': 'Rwanda 🇷🇼'},
-        {'code': 'SYR', 'name': 'Syria 🇸🇾'},
         {'code': 'UGA', 'name': 'Uganda 🇺🇬'},
-        {'code': 'BRB', 'name': 'Barbados 🇧🇧'},
-        {'code': 'BLZ', 'name': 'Belize 🇧🇿'},
+        {'code': 'KEN', 'name': 'Kenya 🇰🇪'},
         {'code': 'HT', 'name':  'Haiti 🇭🇹'},
         {'code': 'VEN', 'name': 'Venezuela 🇻🇪'},
         {'code': 'COL', 'name': 'Colombia 🇨🇴'},
@@ -52,8 +50,8 @@ def dashboard():
         {'code': 'PS', 'name': 'Palestine 🇵🇸'},
         {'code': 'IRN', 'name': 'Iran 🇮🇷'},
         {'code': 'TUR', 'name': 'Turkiye 🇹🇷'},
+        {'code': 'SYR', 'name': 'Syria 🇸🇾'},
         {'code': 'SSD', 'name': 'South Sudan 🇸🇸'},
-        {'code': 'KEN', 'name': 'Kenya 🇰🇪'},
         {'code': 'AFG', 'name': 'Afghanistan 🇦🇫'}
     ]
     
