@@ -4,7 +4,7 @@
 
 Sample Dashboard for the [UN Tech-Over 2025 Hackathon](https://www.un.org/digital-emerging-technologies/content/open-source-week-2025)
 
-Explores applications of [`giga-spatial`](https://github.com/) for OSM handler paired with HDX handler / UNCHR data
+Explores applications of [`giga-spatial`](https://github.com/unicef/giga-spatial) for OSM handler paired with HDX handler / UNCHR data
 
 ## Setup
 
