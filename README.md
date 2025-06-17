@@ -6,15 +6,21 @@ Explores applications of `giga-spatial` for OSM handler paired with HDX handler 
 
 ## Setup
 
-...
+```bash
+python3.10 -m venv .venv
+source .venv/bin/activate
+pip install flask giga-spatial
+pip install folium matplotlib mapclassify
+```
 
 ## Development
 
-...
+- Local Flask app
 
-## Deployment
-
-...
+```bash
+python application.py
+```
+- [127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Disclaimer on AI Tools
 

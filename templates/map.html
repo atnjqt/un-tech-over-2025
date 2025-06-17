@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNHCR Camp Map for {{ country }}</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .map-container {
+            flex-grow: 1; /* Allows the map to fill the available space */
+            border: 0;
+        }
+        .back-link { 
+            display: block; 
+            text-align: center; 
+            padding: 12px; 
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            background-color: #004494;
+        }
+        /* Folium's map is in an iframe, this makes it responsive */
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Select Another Country</a>
+    <div class="map-container">
+        {{ map_html|safe }}
+    </div>
+</body>
+</html> 

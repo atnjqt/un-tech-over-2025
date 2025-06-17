@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNHCR Camp Map Generator</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            text-align: center; 
+            margin: 0;
+            padding: 2em;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 2em;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        select, button { 
+            padding: 12px 15px; 
+            font-size: 16px; 
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+        <div class="container">
+        <h1>UNHCR Camp Map Generator</h1>
+        <p>Select a country to visualize the administrative regions colored by the number of UNHCR camps, with the exact camp locations marked.</p>
+        {% if countries %}
+        <form action="/map" method="post">
+            <select name="country">
+                {% for country in countries %}
+                <option value="{{ country }}">{{ country }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Generate Map</button>
+        </form>
+        {% else %}
+        <p style="color: red; font-weight: bold;">Could not load the country list.</p>
+        <p>Please ensure you have run the <code>unhcr.ipynb</code> notebook to download the necessary data file (<code>data/unhcr/camps.geojson</code>).</p>
+        {% endif %}
+    </div>
+</body>
+</html> 
