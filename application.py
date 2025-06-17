@@ -102,62 +102,105 @@ def dashboard():
 # An API endpoint to fetch map data
 @app.route('/api/fetch-map-data', methods=['POST'])
 def fetch_map_data():
-    data = request.json
-    country = data.get('country', 'RWA')
-    selected_types = data.get('location_types', ['amenity'])
-    
-    # All available location types
-    all_location_types = {
-        "amenity": ["school", "hospital", "restaurant", "bank", "cafe", "pharmacy", "post_office"],
-        "building": ["residential", "commercial", "industrial", "retail", "office"],
-        "waterway": ["river", "canal", "stream", "lake"],
-        "emergency": ["fire_station", "police", "ambulance"],
-        "natural": ["forest", "park", "beach", "wetland"],
-        "transportation": ["bus_stop", "train_station", "airport", "ferry_terminal"],
-        "tourism": ["hotel", "museum", "attraction", "viewpoint"],
-        "historic": ["monument", "ruins", "castle", "memorial"],
-        "leisure": ["playground", "sports_centre", "swimming_pool", "golf_course"],
-        "shop": ["supermarket", "convenience_store", "clothing_store", "electronics_store"],
-        "landuse": ["residential", "commercial", "industrial", "retail", "agricultural"],
-        "boundary": ["administrative", "national_park", "nature_reserve"],
-        "power": ["substation", "transformer", "power_line"],
-        "healthcare": ["clinic", "health_center", "pharmacy"],
-        "waste": ["recycling", "landfill", "waste_disposal"],
-        "sport": ["stadium", "gym", "sports_field", "tennis_court"],
-        "finance": ["atm", "bank", "insurance", "investment"],
-        "cultural": ["theatre", "cinema", "library", "art_gallery"],
-        "religion": ["church", "mosque", "temple", "synagogue"],
-        "education": ["university", "college", "school", "kindergarten"],
-        "public": ["post_office", "community_centre", "civic_building", "government_office"],
-        "miscellaneous": ["fountain", "clock", "statue", "sculpture"]
-    }
-    
-    # Filter the location_types dictionary to only include selected types
-    location_types = {k: v for k, v in all_location_types.items() if k in selected_types}
-    
-    # If no valid types selected, default to waterway
-    if not location_types:
-        location_types = {"waterway": all_location_types["waterway"]}
-    
     try:
+        # Verify we have valid JSON data
+        if not request.is_json:
+            return jsonify({
+                'status': 'error',
+                'message': 'Request must be JSON'
+            }), 400
+            
+        data = request.json
+        country = data.get('country', 'RWA')
+        selected_types = data.get('location_types', ['amenity'])
+        
+        print(f"Processing request for country: {country}, types: {selected_types}")
+        
+        # All available location types
+        all_location_types = {
+            "amenity": ["school", "hospital", "restaurant", "bank", "cafe", "pharmacy", "post_office"],
+            "building": ["residential", "commercial", "industrial", "retail", "office"],
+            "waterway": ["river", "canal", "stream", "lake"],
+            "emergency": ["fire_station", "police", "ambulance"],
+            "natural": ["forest", "park", "beach", "wetland"],
+            "transportation": ["bus_stop", "train_station", "airport", "ferry_terminal"],
+            "tourism": ["hotel", "museum", "attraction", "viewpoint"],
+            "historic": ["monument", "ruins", "castle", "memorial"],
+            "leisure": ["playground", "sports_centre", "swimming_pool", "golf_course"],
+            "shop": ["supermarket", "convenience_store", "clothing_store", "electronics_store"],
+            "landuse": ["residential", "commercial", "industrial", "retail", "agricultural"],
+            "boundary": ["administrative", "national_park", "nature_reserve"],
+            "power": ["substation", "transformer", "power_line"],
+            "healthcare": ["clinic", "health_center", "pharmacy"],
+            "waste": ["recycling", "landfill", "waste_disposal"],
+            "sport": ["stadium", "gym", "sports_field", "tennis_court"],
+            "finance": ["atm", "bank", "insurance", "investment"],
+            "cultural": ["theatre", "cinema", "library", "art_gallery"],
+            "religion": ["church", "mosque", "temple", "synagogue"],
+            "education": ["university", "college", "school", "kindergarten"],
+            "public": ["post_office", "community_centre", "civic_building", "government_office"],
+            "miscellaneous": ["fountain", "clock", "statue", "sculpture"]
+        }
+        
+        # Filter the location_types dictionary to only include selected types
+        location_types = {k: v for k, v in all_location_types.items() if k in selected_types}
+        
+        # If no valid types selected, default to waterway
+        if not location_types:
+            location_types = {"waterway": all_location_types["waterway"]}
+            
+        print(f"Using location types: {location_types}")
+        
+        # Initialize OSM fetcher
         fetcher = OSMLocationFetcher(country=country, location_types=location_types)
+        
+        # Fetch OSM data
+        print(f"Fetching OSM data...")
         df = fetcher.fetch_locations()
+        
+        # Check if data is empty
+        if df is None or df.empty:
+            return jsonify({
+                'status': 'warning',
+                'message': f'No locations found for {country} with selected types'
+            }), 200
+        
+        print(f"OSM data fetched successfully. Shape: {df.shape}")
+        
+        # Convert to GeoDataFrame if needed
         if not isinstance(df, gpd.GeoDataFrame):
+            print("Converting to GeoDataFrame...")
+            # Check if we have the geometry column
+            if 'geometry' not in df.columns:
+                return jsonify({
+                    'status': 'error',
+                    'message': f'Missing geometry column. Available columns: {list(df.columns)}'
+                }), 500
+                
             gdf = gpd.GeoDataFrame(df, geometry="geometry", crs="EPSG:4326")
         else:
             gdf = df
             
         # Generate interactive map HTML
+        print("Generating map...")
         map_html = gdf.explore(column="category")._repr_html_()
         
         return jsonify({
             'status': 'success',
-            'map_html': map_html
+            'map_html': map_html,
+            'data_count': len(gdf),
+            'types_found': list(gdf['category'].unique()) if 'category' in gdf.columns else []
         })
+        
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"ERROR in fetch-map-data: {str(e)}\n{error_details}")
+        
         return jsonify({
             'status': 'error',
-            'message': str(e)
+            'message': str(e),
+            'details': error_details
         }), 500
 
 
