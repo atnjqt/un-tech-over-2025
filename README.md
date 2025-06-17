@@ -13,14 +13,25 @@ pip install flask giga-spatial
 pip install folium matplotlib mapclassify
 ```
 
+- to avoid spamming APIs, save some data locally:
+- `./data/unhcr/camps_raster.tif`
+- `./data/unhcr/...`
+
 ## Development
 
-- Local Flask app
+- Local Flask app with necessary API keys set as environment variables:
 
 ```bash
+export GEOREPO_API_KEY="lAG..."
+export GEOREPO_USER_EMAIL="jacquot.etienne@gmail.com"
 python application.py
 ```
 - [127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+## Deployment
+
+- A sample [Dockerfile](./Dockerfile) is provided for development purposes, as the project is currently not production-ready beyond MacOS Python 3.10.
+
 
 ## Disclaimer on AI Tools
 
