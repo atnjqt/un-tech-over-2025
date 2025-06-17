@@ -112,7 +112,7 @@ charset-normalizer==2.1.1
 click==8.1.7
 colorama==0.4.3
 coverage==7.3.2
-cryptography==38.0.1
+cryptography==44.0.1
 Deprecated==1.2.13
 exceptiongroup==1.2.0
 fabric==2.7.1
