@@ -76,7 +76,7 @@ OWSLib==0.32.1
 packaging==25.0
 pandas==2.3.0
 petl==1.7.16
-pillow==11.2.1
+pillow==11.3.0
 ply==3.11
 pockets==0.9.1
 propcache==0.3.2
