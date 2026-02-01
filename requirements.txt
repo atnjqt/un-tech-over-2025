@@ -37,7 +37,7 @@ fonttools==4.58.4
 frictionless==5.18.1
 frozenlist==1.7.0
 fsspec==2025.5.1
-geopandas==1.1.0
+geopandas==1.1.2
 giga-spatial==0.6.3
 hdx-python-api==6.4.5
 hdx-python-country==3.9.4
